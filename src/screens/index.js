@@ -1,0 +1,5 @@
+export { default as HomeScreen } from './HomeScreen'
+export { default as BasketScreen } from './BasketScreen'
+export { default as PreparingOrderScreen } from './PreparingOrderScreen'
+export { default as ResturantScreen } from './Resturant'
+export { default as DeliverScreen } from './DeliverScreen'

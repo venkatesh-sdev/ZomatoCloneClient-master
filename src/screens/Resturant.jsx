@@ -48,7 +48,6 @@ const Resturant = () => {
       })
     );
   }, []);
-
   return (
     <SafeAreaView className="relative">
       <StatusBar style="inverted" hidden={true} />

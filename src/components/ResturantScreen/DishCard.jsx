@@ -2,11 +2,27 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { urlFor } from "../../constants/sanity";
 import { AntDesign } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItems,
+  removeItems,
+  selectedBasketItemsWithId,
+} from "../../context/slices/basketSlice";
 
-const DishCard = ({ name, description, price, image }) => {
+const DishCard = ({ _id, name, description, price, image }) => {
+  const dispatch = useDispatch();
   const [isPressed, setIsPressed] = useState(false);
 
-  const items = [];
+  const items = useSelector((state) => selectedBasketItemsWithId(state, _id));
+
+  const AddToBasket = () => {
+    dispatch(addItems({ _id, name, description, price, image }));
+  };
+
+  const RemoveFromBasket = () => {
+    if (!items.length < 0) return;
+    dispatch(removeItems({ _id, name, description, price, image }));
+  };
 
   return (
     <View className="p-2  rounded-lg justify-between bg-white mt-2 flex-1">
@@ -29,7 +45,7 @@ const DishCard = ({ name, description, price, image }) => {
       </TouchableOpacity>
       {isPressed && (
         <View className="flex-row items-center space-x-2 p-2">
-          <TouchableOpacity>
+          <TouchableOpacity onPress={RemoveFromBasket} disabled={!items.length}>
             <AntDesign
               name="minuscircle"
               size={24}
@@ -37,7 +53,7 @@ const DishCard = ({ name, description, price, image }) => {
             />
           </TouchableOpacity>
           <Text className="text-xl font-medium">{items.length}</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={AddToBasket}>
             <AntDesign name="pluscircle" size={24} color="red" />
           </TouchableOpacity>
         </View>

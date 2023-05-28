@@ -1,14 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import 'react-native-url-polyfill/auto'
+import "react-native-url-polyfill/auto";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // redux
-import { Provider } from 'react-redux'
-import store from './src/context/store'
+import { Provider } from "react-redux";
+import store from "./src/context/store";
 
 import {
   BasketScreen,
@@ -27,7 +27,11 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="HomeScreen" component={HomeScreen} />
-            <Stack.Screen name="RestaruntScreen" component={ResturantScreen} />
+            <Stack.Screen
+              name="RestaruntScreen"
+              component={ResturantScreen}
+              options={{ presentation: "modal" }}
+            />
             <Stack.Screen
               name="PreparingOrderScreen"
               component={PreparingOrderScreen}

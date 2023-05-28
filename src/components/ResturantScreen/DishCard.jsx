@@ -9,19 +9,20 @@ import {
   selectedBasketItemsWithId,
 } from "../../context/slices/basketSlice";
 
-const DishCard = ({ _id, name, description, price, image }) => {
+const DishCard = ({ id, name, description, price, image }) => {
   const dispatch = useDispatch();
   const [isPressed, setIsPressed] = useState(false);
 
-  const items = useSelector((state) => selectedBasketItemsWithId(state, _id));
+  const items = useSelector((state) => selectedBasketItemsWithId(state, id));
 
   const AddToBasket = () => {
-    dispatch(addItems({ _id, name, description, price, image }));
+    if (items.length >= 20) return;
+    dispatch(addItems({ id, name, description, price, image }));
   };
 
   const RemoveFromBasket = () => {
     if (!items.length < 0) return;
-    dispatch(removeItems({ _id, name, description, price, image }));
+    dispatch(removeItems({ id, name, description, price, image }));
   };
 
   return (

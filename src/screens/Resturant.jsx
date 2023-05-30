@@ -51,14 +51,13 @@ const Resturant = () => {
   }, []);
   return (
     <Fragment>
-      <Basket />
+     <Basket />
       <SafeAreaView className="relative">
-        <StatusBar style="inverted" hidden={true} />
         <Image resizeMode="cover" source={{ uri: urlFor(image).url() }} className="w-full h-40" />
         <TouchableOpacity
           onPress={() => navigation.navigate("HomeScreen")}
           activeOpacity={0.7}
-          className="bg-white p-2 rounded-full absolute top-7 left-5 "
+          className="bg-white p-2 rounded-full absolute top-11 left-3 "
         >
           <AntDesign name="arrowleft" size={24} color="red" />
         </TouchableOpacity>
